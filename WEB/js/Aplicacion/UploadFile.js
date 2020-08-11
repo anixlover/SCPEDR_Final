@@ -124,66 +124,97 @@ function uploadFileImagenVoucher(codigoVoucher) {
             }
         });
     }
-}
 
-function ValidacionImagenVoucher() {
-    var formData = new FormData();
-    var varLstAnexo = ObtenerAnexos4();
+    function uploadFileActualizarVoucher(codigoSolicitud) {
+        var formData = new FormData();
+        var varLstAnexo = ObtenerAnexos5();
 
-    debugger;    
-    debugger;
-    $.each(varLstAnexo, function (key, value) {
-        var file = value;
-        formData.append(file.name, file);
-    });
-    if (varLstAnexo != [undefined]) {
-        $('#hftxtimg').val('1');
-        console.log($("#hftxtimg").val());
+        debugger;
+        $.each(varLstAnexo, function (key, value) {
+            var file = value;
+            formData.append(file.name, file);
+        });
+        console.log("Codigo ingresado al JS es :" + codigoSolicitud);
+        if (varLstAnexo != null) {
+            var urlConsultaRest = "AVoucher.ashx?Id=" + codigoSolicitud;
+            $.ajax({
+                url: urlConsultaRest,
+                type: "POST",
+                contentType: false, // Not to set any content header  
+                processData: false, // Not to process data  
+                data: formData,
+                success: function (result) {
+                    //$('#preloader').fadeOut('slow');
+                    console.log("Documento cargado");
+                },
+                error: function (err) {
+                    console.log("error upload file");
+                }
+            });
+        }
     }
-    else {
-        $('#hftxtimg').val('2');
-        console.log($("#hftxtimg").val());
+
+
+
+    function ValidacionImagenVoucher() {
+        var formData = new FormData();
+        var varLstAnexo = ObtenerAnexos4();
+
+        debugger;
+        debugger;
+        $.each(varLstAnexo, function (key, value) {
+            var file = value;
+            formData.append(file.name, file);
+        });
+        if (varLstAnexo != [undefined]) {
+            $('#hftxtimg').val('1');
+            console.log($("#hftxtimg").val());
+        }
+        else {
+            $('#hftxtimg').val('2');
+            console.log($("#hftxtimg").val());
+        }
     }
-}
 
-function ObtenerAnexos() {
-    var varAnexos = new Array();
+    function ObtenerAnexos() {
+        var varAnexos = new Array();
 
-    var $targetval = $("#cph_body_FileUpload1");
-    var varDocumentoAnexo = $targetval.prop("files");
-    if (!varDocumentoAnexo == false) {
-        varAnexos.push(varDocumentoAnexo[0]);
+        var $targetval = $("#cph_body_FileUpload1");
+        var varDocumentoAnexo = $targetval.prop("files");
+        if (!varDocumentoAnexo == false) {
+            varAnexos.push(varDocumentoAnexo[0]);
+        }
+        return varAnexos;
     }
-    return varAnexos;
-}
-function ObtenerAnexos2() {
-    var varAnexos = new Array();
+    function ObtenerAnexos2() {
+        var varAnexos = new Array();
 
-    var $targetval = $("#ContentPlaceHolder1_FileUpload1");
-    var varDocumentoAnexo = $targetval.prop("files");
-    if (!varDocumentoAnexo == false) {
-        varAnexos.push(varDocumentoAnexo[0]);
+        var $targetval = $("#ContentPlaceHolder1_FileUpload1");
+        var varDocumentoAnexo = $targetval.prop("files");
+        if (!varDocumentoAnexo == false) {
+            varAnexos.push(varDocumentoAnexo[0]);
+        }
+        return varAnexos;
     }
-    return varAnexos;
-}
 
-function ObtenerAnexos3() {
-    var varAnexos = new Array();
+    function ObtenerAnexos3() {
+        var varAnexos = new Array();
 
-    var $targetval = $("#cph_body_FileUpload2");
-    var varDocumentoAnexo = $targetval.prop("files");
-    if (!varDocumentoAnexo == false) {
-        varAnexos.push(varDocumentoAnexo[0]);
+        var $targetval = $("#cph_body_FileUpload2");
+        var varDocumentoAnexo = $targetval.prop("files");
+        if (!varDocumentoAnexo == false) {
+            varAnexos.push(varDocumentoAnexo[0]);
+        }
+        return varAnexos;
     }
-    return varAnexos;
-}
-function ObtenerAnexos4() {
-    var varAnexos = new Array();
+    function ObtenerAnexos4() {
+        var varAnexos = new Array();
 
-    var $targetval = $("#ContentPlaceHolder1_FileUpload1");
-    var varDocumentoAnexo = $targetval.prop("files");
-    if (!varDocumentoAnexo == false) {
-        varAnexos.push(varDocumentoAnexo[0]);
+        var $targetval = $("#ContentPlaceHolder1_FileUpload1");
+        var varDocumentoAnexo = $targetval.prop("files");
+        if (!varDocumentoAnexo == false) {
+            varAnexos.push(varDocumentoAnexo[0]);
+        }
+        return varAnexos;
     }
-    return varAnexos;
 }

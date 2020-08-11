@@ -125,13 +125,28 @@ public partial class ConsultarEstadoPago : System.Web.UI.Page
                     break;
 
                 case "Actualizar":
-                    ImageVo.Visible = true;
-                    
-                    int index5 = Convert.ToInt32(e.CommandArgument);
+                    //ImageVo.Visible = true;
+
+                    //int index5 = Convert.ToInt32(e.CommandArgument);
+                    //var columna5 = gvConsultar.DataKeys[index5].Values;
+                    //string id5 = columna5[0].ToString();
+                    //objDtoSolicitud.PK_IS_Cod = int.Parse(id5);
+                    //objCtrVoucher.DetallesVoucherSolicitudUsuario(objvoucherdao, objDtoSolicitud, dtoMolduraxUsuario);
+
+                    //
+                    //int index5 = Convert.ToInt32(e.CommandArgument);
+                    //var column5 = gvConsultar.DataKeys[index5].Values;
+                    //string id5 = column5[0].ToString();
+                    //Response.Redirect("~/ActualizarImgVoucher.aspx?ID=" + id5);
+                    //
+
+                    int index5= Convert.ToInt32(e.CommandArgument);
                     var columna5 = gvConsultar.DataKeys[index5].Values;
-                    string id5 = columna5[0].ToString();
-                    objDtoSolicitud.PK_IS_Cod = int.Parse(id5);
-                    objCtrVoucher.DetallesVoucherSolicitudUsuario(objvoucherdao, objDtoSolicitud, dtoMolduraxUsuario);
+                    int id5 = Convert.ToInt32(columna5[0].ToString());
+                    _log.CustomWriteOnLog("consultar estado de pago", "id  " + id5);
+                    //Session["idSolicitudPago"] = id5;
+                    Response.Redirect("~/ActualizarImgVoucher.aspx?ID=" + id5);
+                    break;
 
                     //string ac = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
                     //using (SqlConnection con = new SqlConnection(ac))
@@ -151,14 +166,14 @@ public partial class ConsultarEstadoPago : System.Web.UI.Page
                     //    ImageVo.ImageUrl = "data:Image/png;base64," + strbase64;
                     //}
 
-                    Utils.AddScriptClientUpdatePanel(UpdatePanelA, "uploadFileDocuments(" + Request.Params["Id"] + ");");
+                    //Utils.AddScriptClientUpdatePanel(UpdatePanelA, "uploadFileDocuments(" + Request.Params["Id"] + ");");
 
 
-                    txtFechaEmisionA.Text = objDtoSolicitud.DTS_FechaEmicion.ToString();
-                    txtNroOpeA.Text = objvoucherdao.PK_VV_NumVoucher.ToString();
-                    txtImporteA.Text = objvoucherdao.DV_ImporteDepositado.ToString();
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>$('#defaultmodal4').modal('show');</script>", false);
-                    break;
+                    //txtFechaEmisionA.Text = objDtoSolicitud.DTS_FechaEmicion.ToString();
+                    //txtNroOpeA.Text = objvoucherdao.PK_VV_NumVoucher.ToString();
+                    //txtImporteA.Text = objvoucherdao.DV_ImporteDepositado.ToString();
+                    //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>$('#defaultmodal4').modal('show');</script>", false);
+                    //break;
 
             }
         }
@@ -316,13 +331,13 @@ public partial class ConsultarEstadoPago : System.Web.UI.Page
     {
         
 
-        objDtoSolicitud.PK_IS_Cod= Convert.ToInt32(txtcodSol.Text);
-        //objvoucherdao.VBV_Foto = Convert.ToBase64String(ImageVo.ImageUrl);
-        //////// Double.Parse(txtMedida.Text);
-        ////////Encoding.ASCII.GetBytes(reader[0].ToString());
-        //////objvoucherdao.VBV_Foto = Convert.ToBase64String(ImageVo.ImageUrl);/* Encoding.ASCII.GetBytes(reader[0].ToString());*/
-        //////ImageVo.ImageUrl = "data:Image/png;base64," + strbase64; 
-        objCtrVoucher.ActualizarVoucher(objDtoSolicitud);
+        ////objDtoSolicitud.PK_IS_Cod= Convert.ToInt32(txtcodSol.Text);
+        //////objvoucherdao.VBV_Foto = Convert.ToBase64String(ImageVo.ImageUrl);
+        //////////// Double.Parse(txtMedida.Text);
+        ////////////Encoding.ASCII.GetBytes(reader[0].ToString());
+        //////////objvoucherdao.VBV_Foto = Convert.ToBase64String(ImageVo.ImageUrl);/* Encoding.ASCII.GetBytes(reader[0].ToString());*/
+        //////////ImageVo.ImageUrl = "data:Image/png;base64," + strbase64; 
+        ////objCtrVoucher.ActualizarVoucher(objDtoSolicitud);
         //_log.CustomWriteOnLog("PropiedadMoldura", "Actualizado");
     }
 }
