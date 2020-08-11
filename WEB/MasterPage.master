@@ -172,6 +172,19 @@
                             <span>Estado Pedido</span>
                         </a>
                     </li>
+                    <li class="active">
+                        <a href="AdministrarPedidos.aspx">
+                            <i class="material-icons">check</i>
+                            <span>Administrar Pedidos</span>
+                        </a>
+                    </li>
+                    
+                    <li class="active">
+                        <a href="Evaluar_Pedido_Personalizado.aspx">
+                            <i class="material-icons">check</i>
+                            <span>Evaluar Pedido Personalizado</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <!-- #Menu -->

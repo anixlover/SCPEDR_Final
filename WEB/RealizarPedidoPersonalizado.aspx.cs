@@ -290,11 +290,11 @@ public partial class RealizarPedidoPersonalizado : System.Web.UI.Page
             objDtoSolicitud.VS_TipoSolicitud = "Personalizado por catalogo";
             _log.CustomWriteOnLog("registrar pedido personalizado", "objDtoSolicitud.VS_TipoSolicitud : " + objDtoSolicitud.VS_TipoSolicitud);
             objDtoSolicitud.IS_Cantidad = int.Parse(txt_cantidad.Text);
-            _log.CustomWriteOnLog("registrar pedido personalizado", "objDtoSolicitud.VS_TipoSolicitud : " + objDtoSolicitud.VS_TipoSolicitud);
+            _log.CustomWriteOnLog("registrar pedido personalizado", "objDtoSolicitud.IS_Cantidad : " + objDtoSolicitud.IS_Cantidad);
             objDtoSolicitud.DS_ImporteTotal = double.Parse(txt_importe.Text);
-            _log.CustomWriteOnLog("registrar pedido personalizado", "objDtoSolicitud.VS_TipoSolicitud : " + objDtoSolicitud.DS_ImporteTotal);
+            _log.CustomWriteOnLog("registrar pedido personalizado", "objDtoSolicitud.DS_ImporteTotal : " + objDtoSolicitud.DS_ImporteTotal);
             objDtoSolicitud.VS_Comentario = txtarea.Text;
-            _log.CustomWriteOnLog("registrar pedido personalizado", "objDtoSolicitud.VS_TipoSolicitud : " + objDtoSolicitud.VS_Comentario);
+            _log.CustomWriteOnLog("registrar pedido personalizado", "objDtoSolicitud.VS_Comentario : " + objDtoSolicitud.VS_Comentario);
             objDtoSolicitud.IS_EstadoPago = 1; //estado pendiente
 
             objCtrSolicitud.RegistrarSolcitud_PC(objDtoSolicitud);
