@@ -245,6 +245,36 @@ namespace DAO
             conexion.Close();
             return hayRegistros;
         }
+        public int SelectSolicitudNumDias(DtoSolicitud objsol)
+        {
+            string Select = "Select dbo.DevuelveDias(" + objsol.PK_IS_Cod+")";
+            SqlCommand unComando = new SqlCommand(Select, conexion);
+            int dias=0;
+            conexion.Open();
+            SqlDataReader reader = unComando.ExecuteReader();
+            bool hayRegistros = reader.Read();
+            if (hayRegistros)
+            {
+                dias = (int)reader[0];
+            }
+            conexion.Close();
+            return dias;
+        }
+        public double SelectSolicitudImporte(DtoSolicitud objsol)
+        {
+            string Select = "Select dbo.DevuelveImporte(" + objsol.PK_IS_Cod + ")";
+            SqlCommand unComando = new SqlCommand(Select, conexion);
+            double imp = 0;
+            conexion.Open();
+            SqlDataReader reader = unComando.ExecuteReader();
+            bool hayRegistros = reader.Read();
+            if (hayRegistros)
+            {
+                imp = Convert.ToDouble(reader[0].ToString());
+            }
+            conexion.Close();
+            return imp;
+        }
         public bool SelectSolicitudDiseñoPersonalizado(DtoSolicitud objsol)
         {
             string Select = "SELECT * from T_Solicitud where PK_IS_Cod =" + objsol.PK_IS_Cod;
@@ -338,7 +368,14 @@ namespace DAO
             unComando.ExecuteNonQuery();
             conexion.Close();
         }
-
+        public void UpdateSolicitudFecha3(DtoSolicitud objsol,int dias)
+        {
+            string update = "UPDATE T_Solicitud SET DTS_FechaRecojo=CAST(DATEADD(day,"+dias+",GETDATE()) AS DATE),FK_ISE_Cod=9 where PK_IS_Cod =" + objsol.PK_IS_Cod;
+            SqlCommand unComando = new SqlCommand(update, conexion);
+            conexion.Open();
+            unComando.ExecuteNonQuery();
+            conexion.Close();
+        }
         public DataTable Listar_Solicitud_Personalizado()
         {
             DataTable dtsolicitudes = null;

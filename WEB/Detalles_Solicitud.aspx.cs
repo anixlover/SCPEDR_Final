@@ -20,9 +20,11 @@ public partial class Detalles_Solicitud : System.Web.UI.Page
             txtfecha.Visible = false;
             lblfecha.Visible = false;
             btnfehca.Visible = false;
+            lbldias.Visible = false;
             CargarCliente();
             asignar(); 
             CargarMolduras2();
+            asignar2();
         }
     }
     public void CargarCliente()
@@ -49,7 +51,7 @@ public partial class Detalles_Solicitud : System.Web.UI.Page
                 imgPersonal.Visible = false;
                 gvMolduras.Visible = true;
                 txtcomentario.Visible = false;
-                lblcosto.Text = "S/" + objDtoSolicitud.DS_ImporteTotal.ToString();
+                lblcosto.Text = "S/ " + objDtoSolicitud.DS_ImporteTotal.ToString();
                 gvMolduras.DataSource = objCtrSolicitud.ListaMolduras(objDtoSolicitud);
                 gvMolduras.DataBind();
             }
@@ -81,13 +83,39 @@ public partial class Detalles_Solicitud : System.Web.UI.Page
             }
         }
     }
+    public void asignar2()
+    {
+        objDtoSolicitud.PK_IS_Cod = Convert.ToInt32(Session["idSolicitudPago"]);
+        if (objCtrSolicitud.leerSolicitudTipo(objDtoSolicitud))
+        {
+            if (Session["estado"].ToString() == "2" && objDtoSolicitud.VS_TipoSolicitud == "Personalizado por diseño propio")
+            {
+                objCtrSolicitud.diasRecojo(objDtoSolicitud);
+                txtfecha.Visible = false;
+                txtfecha.Text = DateTime.Today.Date.ToString();
+                lblfecha.Visible = true;
+                btnfehca.Visible = true;
+                lbldias.Visible = true;
+                lbldias.Text = objCtrSolicitud.diasRecojo(objDtoSolicitud).ToString();
+                objDtoSolicitud.PK_IS_Cod = Convert.ToInt32(Session["idSolicitudPago"].ToString());
+            }
+        }
+    }
     protected void btnfehca_Click(object sender, EventArgs e)
     {
         objDtoSolicitud.PK_IS_Cod = Convert.ToInt32(Session["idSolicitudPago"]);
+        objCtrSolicitud.leerSolicitudTipo(objDtoSolicitud);
         DateTime fecha = Convert.ToDateTime(txtfecha.Text);
-        objDtoSolicitud.DTS_FechaRecojo = fecha;
-        objCtrSolicitud.actualizarEstadoFecha(objDtoSolicitud);
-        msj(objDtoSolicitud);
+        if (objDtoSolicitud.VS_TipoSolicitud == "Personalizado por diseño propio")
+        {
+            objCtrSolicitud.ActualizarFechaPersonalizadoDiseñopropio(objDtoSolicitud, objCtrSolicitud.diasRecojo(objDtoSolicitud));
+        }
+        if (objDtoSolicitud.VS_TipoSolicitud == "Personalizado por catalogo" || objDtoSolicitud.VS_TipoSolicitud == "Catalogo")
+        {
+            objDtoSolicitud.DTS_FechaRecojo = fecha;
+            objCtrSolicitud.actualizarEstadoFecha(objDtoSolicitud);
+            msj(objDtoSolicitud);
+        }
     }
     public void msj(DtoSolicitud s)
     {

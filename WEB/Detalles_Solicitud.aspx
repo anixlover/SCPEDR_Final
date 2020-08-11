@@ -55,7 +55,7 @@
                     <asp:GridView ID="gvMolduras" CssClass="table table-bordered table-hover js-basic-example dataTable" runat="server" AutoGenerateColumns="false">
                         <Columns>
                             <asp:BoundField DataField="PK_IM_Cod" ItemStyle-HorizontalAlign="Center" HeaderText="Coóigo de Moldura" />
-                            <%--                                <asp:ImageField DataImageUrlField="VBM_Imagen" ItemStyle-HorizontalAlign="Center" HeaderText="Imagen" />--%>
+                            <%--<asp:ImageField DataImageUrlField="VBM_Imagen" ItemStyle-HorizontalAlign="Center" HeaderText="Imagen" />--%>
                             <asp:BoundField DataField="VM_Descripcion" ItemStyle-HorizontalAlign="Center" HeaderText="Nombre de Moldura" />
                             <asp:BoundField DataField="VTM_Nombre" ItemStyle-HorizontalAlign="Center" HeaderText="Tipo de Moldura" />
                             <asp:BoundField DataField="IMU_Cantidad" ItemStyle-HorizontalAlign="Center" HeaderText="Cantidad" />
@@ -76,8 +76,8 @@
                             <br />
                             <asp:Label ID="lblfecha" runat="server" Text="Asignar Fecha de recojo:" Style="font-weight: 700; font-size: x-large;"></asp:Label><br />
                             <br />
-                            <asp:TextBox ID="txtfecha" runat="server" type="date" CssClass="form-control"></asp:TextBox><br />
-                            <br />
+                            <asp:TextBox ID="txtfecha" runat="server" type="date" CssClass="form-control"></asp:TextBox>
+                            <asp:Label ID="lbldias" runat="server" Text="..."></asp:Label>&nbsp;Días a asignar<br />
                             <asp:Button ID="btnfehca" runat="server" Text="Asignar" CssClass="btn btn-success" OnClick="btnfehca_Click" />
                         </ContentTemplate>
                     </asp:UpdatePanel>

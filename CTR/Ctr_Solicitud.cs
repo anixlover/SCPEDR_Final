@@ -135,6 +135,10 @@ namespace CTR
         {
             objDaoSolicitud.UpdateSolicitudFecha2(sol);
         }
+        public void ActualizarFechaPersonalizadoDiseñopropio(DtoSolicitud sol,int dias)
+        {
+            objDaoSolicitud.UpdateSolicitudFecha3(sol,dias);
+        }
         public void ObtenerSolicitudPersonalizado(DtoSolicitud objsolicitud, DtoSolicitudEstado objSolicitudEstado)
         {
             objDaoSolicitud.ObtenerSolicitudPersonalizado(objsolicitud, objSolicitudEstado);
@@ -162,6 +166,14 @@ namespace CTR
         public void RechazarP(DtoSolicitud objsol)
         {
             objDaoSolicitud.RechazarP(objsol);
+        }
+        public  int diasRecojo(DtoSolicitud objsol)
+        {
+            return objDaoSolicitud.SelectSolicitudNumDias(objsol);
+        }
+        public double ImporteSolicitud(DtoSolicitud objsol)
+        {
+            return objDaoSolicitud.SelectSolicitudImporte(objsol);
         }
     }
 }
