@@ -37,6 +37,7 @@ namespace DAO
             cmd.ExecuteNonQuery();
             conexion.Close();
         }
+
         public bool SelectPagoVoucher(DtoVoucher v)
         {
             string Select = "SELECT * from T_Voucher where PK_VV_NumVoucher ='" +  v.PK_VV_NumVoucher+"'";
@@ -100,14 +101,25 @@ namespace DAO
             conexion.Dispose();
         }
 
-        public void ActualizarVoucher(DtoSolicitud objDtoSolicitud)
-        { 
-            SqlCommand command = new SqlCommand("[SP_ActualizarVoucher", conexion);
+        //public void ActualizarVoucher(DtoSolicitud objDtoSolicitud)
+        //{ 
+        //    SqlCommand command = new SqlCommand("[SP_ActualizarVoucher", conexion);
+        //    command.CommandType = CommandType.StoredProcedure;
+        //    command.Parameters.AddWithValue("@idsol", objDtoSolicitud.PK_IS_Cod);
+        //    var binary1 = command.Parameters.Add("@imagen", SqlDbType.VarBinary, -1);
+        //    binary1.Value = DBNull.Value;
+        //    //command.Parameters.AddWithValue("@imagen", objdtoVoucher.VBV_Foto);
+        //    conexion.Open();
+        //    command.ExecuteNonQuery();
+        //    conexion.Close();
+        //}
+
+        public void ActualizarVoucher(byte[] bytes, int id)
+        {
+            SqlCommand command = new SqlCommand("SP_ActualizarVoucher", conexion);
             command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@idsol", objDtoSolicitud.PK_IS_Cod);
-            var binary1 = command.Parameters.Add("@imagen", SqlDbType.VarBinary, -1);
-            binary1.Value = DBNull.Value;
-            //command.Parameters.AddWithValue("@imagen", objdtoVoucher.VBV_Foto);
+            command.Parameters.AddWithValue("@idsol", id);
+            command.Parameters.AddWithValue("@imagen", bytes);
             conexion.Open();
             command.ExecuteNonQuery();
             conexion.Close();

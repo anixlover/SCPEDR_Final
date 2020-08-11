@@ -205,7 +205,7 @@
         </div>
     </div>
 
-            <div class="modal fade" id="defaultmodal4" tabindex="-1" role="dialog">
+            <%--<div class="modal fade" id="defaultmodal4" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <asp:UpdatePanel runat="server" ID="UpdatePanel3" UpdateMode="Always">
@@ -271,7 +271,7 @@
                             <%--<asp:LinkButton ID="btnGuardar" runat="server" CssClass="btn bg-red waves-effect" Style="float: right" Width="100%" Text="Cancelar" OnClick="btnGuardar_Click">
 												<i class="material-icons">arrow_back</i>Regresar
                             </asp:LinkButton>--%>
-                             <asp:UpdatePanel ID="UpdatePanelA" runat="server" UpdateMode="Conditional">
+                             <%--<asp:UpdatePanel ID="UpdatePanelA" runat="server" UpdateMode="Conditional">
                                 <ContentTemplate>
                                     <asp:Button ID="btnActualizar" runat="server" Text="Actualizar" CssClass="btn btn-success btn-group-sm" OnClick="btnActualizar_Click" />
                                 </ContentTemplate>
@@ -281,7 +281,7 @@
                 </asp:UpdatePanel>
             </div>
         </div>
-    </div>
+    </div>--%>--%>
         </div>
     </div>
     <%--<script>

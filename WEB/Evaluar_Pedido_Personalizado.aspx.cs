@@ -34,6 +34,11 @@ public partial class Evaluar_Pedido_Personalizado : System.Web.UI.Page
         }
     }
 
+    protected Boolean ValidacionEstado(string estado)
+    {
+        return estado == "En aprovacion";
+    }
+
     protected void gvPersonalizado_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         if (e.CommandName=="Ver")

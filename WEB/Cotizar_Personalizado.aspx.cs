@@ -35,9 +35,12 @@ public partial class Cotizar_Personalizado : System.Web.UI.Page
             }
         }
     }
+
+
+
     public void obtenerInformacionSolicitud(string id)
     {
-        _log.CustomWriteOnLog("CotizarSolicitud", "-------------------------------------------------- Entro a Cotizacion ----------------------------------------");
+        _log.CustomWriteOnLog("CotizarSolicitud", "-------------------------------------------------- Obtener Info de Solicitud ----------------------------------------");
         objDtoSolicitud.PK_IS_Cod = int.Parse(id);
 
         objCtrSolicitud.ObtenerSolicitudPersonalizado(objDtoSolicitud, objDtoSolicitudEstado);
@@ -49,7 +52,7 @@ public partial class Cotizar_Personalizado : System.Web.UI.Page
         _log.CustomWriteOnLog("CotizarSolicitud", "DS_PrecioAprox" + objDtoSolicitud.DS_PrecioAprox);
         _log.CustomWriteOnLog("CotizarSolicitud", "VS_Comentario" + objDtoSolicitud.VS_Comentario);
 
-        //ONTENER IMAGEN
+        //OBTENER IMAGEN
 
         string cs = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
         using (SqlConnection con = new SqlConnection(cs))
@@ -74,15 +77,59 @@ public partial class Cotizar_Personalizado : System.Web.UI.Page
         txt_precioaprox.Text = objDtoSolicitud.DS_PrecioAprox.ToString();
         txt_comentario.Text = objDtoSolicitud.VS_Comentario.ToString();
 
-
     }
     protected void btnrechazar_Click(object sender, EventArgs e)
     {
+        try
+        {
+            if (Request.Params["Id"] != null)
+            {
+                _log.CustomWriteOnLog("CotizarSolicitud", "-------------------------------------------------- Rechaza Cotizacion ----------------------------------------");
+                objDtoSolicitud.PK_IS_Cod = int.Parse(Request.Params["Id"]);
 
+                objCtrSolicitud.RechazarP(objDtoSolicitud);
+
+
+                Utils.AddScriptClientUpdatePanel(UpdatePanel1, "showSuccessMessage3()");
+
+            }
+        }
+        catch (Exception ex)
+        {
+            _log.CustomWriteOnLog("CotizarSolicitud", "Error  = " + ex.Message + "posicion" + ex.StackTrace);
+
+        }
     }
+
+
     protected void btnGuardar_Click(object sender, EventArgs e)
     {
+        try
+        {
+            if (Request.Params["Id"] != null)
+            {
+                _log.CustomWriteOnLog("CotizarSolicitud", "-------------------------------------------------- Cotizar ----------------------------------------");
+                objDtoSolicitud.PK_IS_Cod = int.Parse(Request.Params["Id"]);
+                objDtoSolicitud.IS_Ndias = int.Parse(txt_dias.Text);
+                objDtoSolicitud.DS_ImporteTotal = Double.Parse(txt_importe.Text);
 
+                _log.CustomWriteOnLog("CotizarSolicitud", "IS_Ndias" + objDtoSolicitud.IS_Ndias);
+                _log.CustomWriteOnLog("CotizarSolicitud", "DS_ImporteTotal" + objDtoSolicitud.DS_ImporteTotal);
+
+                objCtrSolicitud.Cotizar(objDtoSolicitud);
+
+                _log.CustomWriteOnLog("CotizarSolicitud", "COTIZADO EXITOSAMENTE");
+
+
+                Utils.AddScriptClientUpdatePanel(upBotonGuardar, "showSuccessMessage2()");
+
+            }
+        }
+        catch (Exception ex)
+        {
+            _log.CustomWriteOnLog("CotizarSolicitud", "Error  = " + ex.Message + "posicion" + ex.StackTrace);
+
+        }
     }
     
     protected void btnCancelar_Click(object sender, EventArgs e)

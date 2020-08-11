@@ -28,6 +28,7 @@
                                         <asp:BoundField DataField="VS_TipoSolicitud" HeaderText="Tipo Solicitud" />
                                         <asp:BoundField DataField="V_SE_Nombre" HeaderText="Estado" />
 
+                                        
                                         <asp:ButtonField ButtonType="button" HeaderText="Ver" CommandName="Ver" Text="Ver">
                                             <%--<i class="material-icons">drafts</i> <span>Cotizar<span>--%>
                                             <ControlStyle CssClass="btn btn-warning" />
@@ -37,9 +38,19 @@
                                                 <asp:LinkButton Text="Cotizar" ButtonType="button" CommandName="Cotizar" runat="server"><i class="material-icons">drafts</i></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
-                                        <asp:ButtonField ButtonType="button" runat="server" HeaderText="Cotizar"  CommandName="Cotizar" Text="Cotizar">
+                                        <asp:TemplateField HeaderText="Cotizar" ItemStyle-HorizontalAlign="Center">
+                                            <ItemTemplate>
+                                                <asp:Button runat="server" Text="Cotizar" ItemStyle-HorizontalAlign="Center"
+                                Visible='<%# ValidacionEstado(Eval("V_SE_Nombre").ToString()) %>'
+                                CommandName="Cotizar" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn btn-warning" />
+                            
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+
+<%--                                        <asp:ButtonField ButtonType="button" runat="server" HeaderText="Cotizar"  CommandName="Cotizar" Text="Cotizar">
                                         <ControlStyle CssClass="btn btn-warning" />
-                                        </asp:ButtonField>
+                                        </asp:ButtonField>--%>
                                     </Columns>
 
                                 </asp:GridView>

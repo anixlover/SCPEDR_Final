@@ -144,7 +144,7 @@
                                     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
                                             <asp:LinkButton ID="btnrechazar" runat="server" CssClass="btn bg-red waves-effect" Style="float: right" Width="100%" Text="RECHAZAR"
-                                                OnClick="btnGuardar_Click">
+                                                OnClick="btnrechazar_Click">
                                                 <i class="material-icons">close </i> <span>RECHAZAR</span> 
                                             </asp:LinkButton>
                                         </ContentTemplate>
@@ -189,5 +189,29 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_footer" runat="Server">
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cph_Js" runat="Server">
+    <script>
+        function showSuccessMessage2() {
+            setTimeout(function () {
+                swal({
+                    title: "Cotizacion Enviada",
+                    text: "Pulsa el botón 'ok' y se te redirigirá",
+                    type: "success"
+                }, function () {
+                        window.location = "Evaluar_Pedido_Personalizado.aspx";
+                });
+            }, 1000);
+        }
+        function showSuccessMessage3() {
+            setTimeout(function () {
+                swal({
+                    title: "Solicitud Rechazada Exitosamente",
+                    text: "Pulsa el botón 'ok' y se te redirigirá",
+                    type: "success"
+                }, function () {
+                    window.location = "Evaluar_Pedido_Personalizado.aspx";
+                });
+            }, 1000);
+        }
+    </script>
 </asp:Content>
 
