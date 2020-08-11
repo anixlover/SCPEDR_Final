@@ -80,23 +80,23 @@
                                     <asp:UpdatePanel runat="server" ID="calcular1">
                                         <ContentTemplate>
                                             <asp:UpdatePanel runat="server" ID="buscar">
-                                                                <ContentTemplate>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="col-sm-24">
-                                                        <div class="auto-style1">
-                                                            <asp:Label ID="Label1" runat="server" class="form-label"><b>Codigo Producto</b></asp:Label>
-                                                            <div class="form-line">
-                                                                <asp:TextBox ID="txtcodigo" placeholder="Ej: 950" class="form-control" runat="server" pattern="[0-9]+" type="text">
-                                                                </asp:TextBox>
-                                                            </div>
-                                                        </div>
-                                                        <br />
-                                                        <%--boton buscar--%>
+                                                <ContentTemplate>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="col-sm-24">
+                                                                <div class="auto-style1">
+                                                                    <asp:Label ID="Label1" runat="server" class="form-label"><b>Codigo Producto</b></asp:Label>
+                                                                    <div class="form-line">
+                                                                        <asp:TextBox ID="txtcodigo" placeholder="Ej: 950" class="form-control" runat="server" pattern="[0-9]+" type="text">
+                                                                        </asp:TextBox>
+                                                                    </div>
+                                                                </div>
+                                                                <br />
+                                                                <%--boton buscar--%>
 
 
-                                                        <div class="col-sm-13">
-                                                            
+                                                                <div class="col-sm-13">
+
                                                                     <asp:LinkButton runat="server" ID="btnBuscarProducto"
                                                                         CssClass="busqueda"
                                                                         OnClick="btnBuscarProducto_Click">
@@ -192,12 +192,11 @@
 
                                                                     </div>
 
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                                </ContentTemplate>
-                                                            </asp:UpdatePanel>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </div>
@@ -239,64 +238,64 @@
                                 </div>
                             </div>
                         </div>
-                        </div>
                     </div>
                 </asp:Panel>
-                <div class="row clearfix">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="cartilla" id="personalizado" runat="server" hidden clientidmode="Static">
-                            <div class="header">
-                                <h2>Especificaciones</h2>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="cartilla" id="personalizado" runat="server" hidden clientidmode="Static">
+                        <div class="header">
+                            <h2>Especificaciones</h2>
+                        </div>
+                        <div class="body">
+                            <br />
+                            <div class="medio">
+                                <asp:Label ID="Label7" runat="server" class="form-label"><b>Subir imagen de la moldura aqui:</b></asp:Label>
+                                <br />
+                                <asp:Image ID="Image1" Height="250px" Width="250px" runat="server" class="rounded" />
+                                <input name="fileAnexo" type="file" id="FileUpload1" runat="server" accept=".png,.jpg"
+                                    class="btn btn-warning" style="width: 50%;" onchange="ImagePreview(this);" cssclass="centro" />
+
                             </div>
-                            <div class="body">
-                                <br />
-                                <div class="medio">
-                                    <asp:Label ID="Label7" runat="server" class="form-label"><b>Subir imagen de la moldura aqui:</b></asp:Label>
+                            <br />
+                            <asp:UpdatePanel runat="server" ID="calcular2">
+                                <ContentTemplate>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="col-sm-12">
+
+                                                <asp:Label ID="Label8" runat="server" class="form-label"><b>Seleccione tipo de moldura:</b></asp:Label>
+                                                <asp:DropDownList runat="server" ID="ddlTipoMoldura" CssClass=" bootstrap-select form-control"></asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <br />
-                                    <asp:Image ID="Image1" Height="250px" Width="250px" runat="server" class="rounded" />
-                                    <input name="fileAnexo" type="file" id="FileUpload1" runat="server" accept=".png,.jpg"
-                                        class="btn btn-warning" style="width: 50%;" onchange="ImagePreview(this);" cssclass="centro" />
-
-                                </div>
-                                <br />
-                                <asp:UpdatePanel runat="server" ID="calcular2">
-                                    <ContentTemplate>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="col-sm-12">
-
-                                                    <asp:Label ID="Label8" runat="server" class="form-label"><b>Seleccione tipo de moldura:</b></asp:Label>
-                                                    <asp:DropDownList runat="server" ID="ddlTipoMoldura" CssClass=" bootstrap-select form-control"></asp:DropDownList>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="col-sm-6">
+                                                <asp:Label ID="Label9" runat="server" class="form-label"><b>Medida: </b></asp:Label>
+                                                <div class="form-line">
+                                                    <asp:TextBox ID="txtmedidap" placeholder="Ej: 1 Mt" class="form-control" runat="server"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
-                                        <br />
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <div class="col-sm-6">
-                                                    <asp:Label ID="Label9" runat="server" class="form-label"><b>Medida: </b></asp:Label>
-                                                    <div class="form-line">
-                                                        <asp:TextBox ID="txtmedidap" placeholder="Ej: 1 Mt" class="form-control" runat="server"></asp:TextBox>
-                                                    </div>
+                                        <div class="col-md-3">
+                                            <div class="col-sm-6">
+                                                <asp:Label ID="Label10" runat="server" class="form-label"><b>Cantidad:</b></asp:Label>
+                                                <div class="form-line">
+                                                    <asp:TextBox ID="txtcantidadp" placeholder="Ej: 50" class="form-control" runat="server"></asp:TextBox>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
-                                                <div class="col-sm-6">
-                                                    <asp:Label ID="Label10" runat="server" class="form-label"><b>Cantidad:</b></asp:Label>
-                                                    <div class="form-line">
-                                                        <asp:TextBox ID="txtcantidadp" placeholder="Ej: 50" class="form-control" runat="server"></asp:TextBox>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        </div>
 
-                                            <div class="col-md-5">
-                                                <div class="col-sm-8">
-                                                    <asp:Label ID="Label11" runat="server" class="form-label"><b>Importe aprox:</b></asp:Label>
-                                                    <div class="form-line">
-                                                        <asp:TextBox ID="txtimporteaprox" placeholder="Ej: S/2100.00" class="form-control" runat="server"></asp:TextBox>
-                                                    </div>
+                                        <div class="col-md-5">
+                                            <div class="col-sm-8">
+                                                <asp:Label ID="Label11" runat="server" class="form-label"><b>Importe aprox:</b></asp:Label>
+                                                <div class="form-line">
+                                                    <asp:TextBox ID="txtimporteaprox" placeholder="Ej: S/2100.00" class="form-control" runat="server"></asp:TextBox>
                                                 </div>
-                                                <%--<div class="col-sm-4 right">
+                                            </div>
+                                            <%--<div class="col-sm-4 right">
                                                 <asp:UpdatePanel runat="server">
                                                     <ContentTemplate>
                                                         <asp:LinkButton runat="server" ID="btnCalcular2"  CssClass="btn btn-primary btn-lg"
@@ -305,39 +304,39 @@
                                                     </ContentTemplate>
                                                 </asp:UpdatePanel>
                                             </div>--%>
-                                            </div>
-                                            <div class="col-sm-offset-9">
-                                                <asp:LinkButton runat="server" ID="btnCalcular2" CssClass="btn btn-primary btn-lg"
-                                                    OnClick="btnCalcular2_Click"> <i class="material-icons"></i>Calcular
-                                                </asp:LinkButton>
-                                            </div>
-                                            <div class="col-md-3 col-md-offset-9"></div>
                                         </div>
-                                    </ContentTemplate>
-                                </asp:UpdatePanel>
-                            </div>
-                            <br />
-                            <%--comentario--%>
-                            <div class="col-md-12">
-                                <div class="col-sm-24">
-                                    <asp:Label ID="Label12" runat="server" class="form-label"><b>Comentario:</b></asp:Label>
-                                    <div class="form-line">
-                                        <asp:TextBox ID="txtcomentario2" placeholder="Por favor escribir aqui algun detalle que desee para que el vendedor lo inspeccione..." class="form-control" runat="server" Rows="4" type="text" Width="100%" TextMode="MultiLine" Height="55px"></asp:TextBox>
+                                        <div class="col-sm-offset-9">
+                                            <asp:LinkButton runat="server" ID="btnCalcular2" CssClass="btn btn-primary btn-lg"
+                                                OnClick="btnCalcular2_Click"> <i class="material-icons"></i>Calcular
+                                            </asp:LinkButton>
+                                        </div>
+                                        <div class="col-md-3 col-md-offset-9"></div>
                                     </div>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </div>
+                        <br />
+                        <%--comentario--%>
+                        <div class="col-md-12">
+                            <div class="col-sm-24">
+                                <asp:Label ID="Label12" runat="server" class="form-label"><b>Comentario:</b></asp:Label>
+                                <div class="form-line">
+                                    <asp:TextBox ID="txtcomentario2" placeholder="Por favor escribir aqui algun detalle que desee para que el vendedor lo inspeccione..." class="form-control" runat="server" Rows="4" type="text" Width="100%" TextMode="MultiLine" Height="55px"></asp:TextBox>
                                 </div>
                             </div>
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <div class="row">
-                                <div class="medio">
-                                    <%--                                            <div class="col-md-3">--%>
-                                    <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
-                                        <ContentTemplate>
-                                            <asp:Button ID="btnRegistrar2" runat="server" class="btn btn-success btn-lg" Text="Registrar" OnClick="btnRegistrar2_Click"></asp:Button>
-                                            <%--</ContentTemplate>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div class="row">
+                            <div class="medio">
+                                <%--                                            <div class="col-md-3">--%>
+                                <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <asp:Button ID="btnRegistrar2" runat="server" class="btn btn-success btn-lg" Text="Registrar" OnClick="btnRegistrar2_Click"></asp:Button>
+                                        <%--</ContentTemplate>
                                                 </asp:UpdatePanel>
                                             </div>
                                             <div class="col-md-3">
@@ -345,10 +344,9 @@
                                                     <ContentTemplate>--%>
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                         <asp:Button ID="btnCancelar2" runat="server" class="btn btn-danger btn-lg" Text="Cancelar" OnClick="btnCancelar2_Click"></asp:Button>
-                                        </ContentTemplate>
-                                    </asp:UpdatePanel>
-                                    <%--</div>--%>
-                                </div>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                                <%--</div>--%>
                             </div>
                         </div>
                     </div>

@@ -47,7 +47,7 @@ namespace CTR
 
                 using (StreamWriter sw = new StreamWriter(strPath, true, Encoding.Unicode))
                 {
-                    sw.WriteLine(strDate + " : " + strMessage);
+                   sw.WriteLine(strDate + " : " + strMessage);
                 }
             }
         }
