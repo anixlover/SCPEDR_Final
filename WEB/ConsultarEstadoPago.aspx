@@ -59,9 +59,12 @@
                             <asp:Button runat="server" Text="Actualizar" ItemStyle-HorizontalAlign="Center"
                                 Visible='<%# ValidacionEstado2(Eval("V_SE_Nombre").ToString()) %>'
                                 CommandName="Actualizar" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn btn-warning" />
-                            <asp:Button runat="server" Text="Ver detalle" ItemStyle-HorizontalAlign="Center"
+                            <asp:Button runat="server" Text="Ver" ItemStyle-HorizontalAlign="Center"
                                 Visible='<%# ValidacionEstado3(Eval("V_SE_Nombre").ToString()) %>'
                                 CommandName="Ver detalle" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn btn-warning" />
+                            <asp:Button runat="server" Text="Ver Detalles" ItemStyle-HorizontalAlign="Center"
+                                 Visible='<%# ValidacionEstado6(Eval("VS_TipoSolicitud").ToString()) %>'
+                                 CommandName="Ver detalles" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn btn-warning" />
                             <asp:Button runat="server" Text="Ver proceso" ItemStyle-HorizontalAlign="Center"
                                 Visible='<%# ValidacionEstado4(Eval("V_SE_Nombre").ToString()) %>'
                                 CommandName="Ver proceso" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn btn-warning" />
@@ -137,73 +140,106 @@
                 </div>
             </div>
 
-             <div class="modal fade" id="defaultmodal3" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <asp:UpdatePanel runat="server" ID="UpdatePanel2" UpdateMode="Always">
-                    <ContentTemplate>
-                        <div class="modal-header navbar">
-                            <h4 class="modal-title" id="tituloModal" runat="server">Detalles de voucher de la compra</h4>
-                        </div>
-                        <div class="modal-body">
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div>
-                                        <asp:Image ID="ImageV" Height="300px" Width="300px" runat="server" class="rounded" />
-                                    </div>
+            <div class="modal fade" id="defaultmodal3" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <asp:UpdatePanel runat="server" ID="UpdatePanel2" UpdateMode="Always">
+                            <ContentTemplate>
+                                <div class="modal-header navbar">
+                                    <h4 class="modal-title" id="tituloModal" runat="server">Detalles de voucher de la compra</h4>
                                 </div>
-                                <div class="col-md-6">
-                                  
-                                    <div class="col-md-12">
-                                        <div class="row clearfix">
-                                            <div class="form-group form-float">
-                                                <label class="form-label">Emision de solicitud:</label>
-                                                <div class="form-line focused">
-                                                    <div class="form-line">
-                                                        <asp:TextBox ID="txtFechaEmision" class="form-control" runat="server" ReadOnly="true"></asp:TextBox>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="row clearfix">
-                                            <div class="form-group form-float">
-                                                <label class="form-label">Numero de operacion:</label>
-                                                <div class="form-line focused">
-                                                    <div class="form-line">
-                                                        <asp:TextBox ID="txtNroOpe" class="form-control" runat="server" ReadOnly="true"></asp:TextBox>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="row clearfix">
-                                            <div class="form-group form-float">
-                                                <label class="form-label">Importe:</label>
-                                                <div class="form-line focused">
-                                                    <div class="form-line">
-                                                        <asp:TextBox ID="txtImporte" class="form-control" runat="server" ReadOnly="true"></asp:TextBox>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                  
-                                </div>
-                            </div>
+                                <div class="modal-body">
 
-                        </div>
-                        <div class="modal-footer btn-group-sm">
-                            <%--<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Cerrar</button>--%>
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div>
+                                                <asp:Image ID="ImageV" Height="300px" Width="300px" runat="server" class="rounded" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+
+                                            <div class="col-md-12">
+                                                <div class="row clearfix">
+                                                    <div class="form-group form-float">
+                                                        <label class="form-label">Emision de solicitud:</label>
+                                                        <div class="form-line focused">
+                                                            <div class="form-line">
+                                                                <asp:TextBox ID="txtFechaEmision" class="form-control" runat="server" ReadOnly="true"></asp:TextBox>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row clearfix">
+                                                    <div class="form-group form-float">
+                                                        <label class="form-label">Numero de operacion:</label>
+                                                        <div class="form-line focused">
+                                                            <div class="form-line">
+                                                                <asp:TextBox ID="txtNroOpe" class="form-control" runat="server" ReadOnly="true"></asp:TextBox>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row clearfix">
+                                                    <div class="form-group form-float">
+                                                        <label class="form-label">Importe:</label>
+                                                        <div class="form-line focused">
+                                                            <div class="form-line">
+                                                                <asp:TextBox ID="txtImporte" class="form-control" runat="server" ReadOnly="true"></asp:TextBox>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer btn-group-sm">
+                                    <%--<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Cerrar</button>--%>
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+            <div class="modal fade" id="defaultmodal4" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <asp:UpdatePanel runat="server" ID="UpdatePanel3" UpdateMode="Always">
+                            <ContentTemplate>
+                                <div class="modal-header navbar">
+                                    <h4 class="modal-title" id="H2" runat="server">Ver retraso de su pedido</h4>
+                                </div>
+
+                                <div class="modal-body">
+                                    <asp:Image ID="imgPersonal" runat="server" Width="300px" Height="300px"/>
+                                    <asp:GridView ID="gvMolduras" DataKeyNames="VTM_Nombre,IMU_Cantidad,DMU_Precio,VMXUE_Nombre,VMXU_Incidente" CssClass="table table-bordered table-hover js-basic-example dataTable" runat="server" AutoGenerateColumns="false">
+                                        <Columns>
+                                            <asp:BoundField DataField="PK_IM_Cod" ItemStyle-HorizontalAlign="Center" HeaderText="Coóigo de Moldura" />
+                                            <%--<asp:ImageField DataImageUrlField="VBM_Imagen" ItemStyle-HorizontalAlign="Center" HeaderText="Imagen" />--%>
+                                            <asp:BoundField DataField="VM_Descripcion" ItemStyle-HorizontalAlign="Center" HeaderText="Nombre de Moldura" />
+                                            <asp:BoundField DataField="VTM_Nombre" ItemStyle-HorizontalAlign="Center" HeaderText="Tipo de Moldura" />
+                                            <asp:BoundField DataField="IMU_Cantidad" ItemStyle-HorizontalAlign="Center" HeaderText="Cantidad" />
+                                            <asp:BoundField DataField="DMU_Precio" ItemStyle-HorizontalAlign="Center" HeaderText="Precio" />
+                                        </Columns>
+                                    </asp:GridView>
+                                    <asp:Label ID="lblcosto" runat="server" Text="0.00" Style="font-weight: 700; font-size: xx-large; color: #009900"></asp:Label><br />
+                                    <asp:Label ID="lblImporte" runat="server" Text="0.00" Style="font-weight: 100; font-size:medium;"></asp:Label><br />
+                                    <asp:Label ID="lbldias" runat="server" Text="..." Style="font-weight: 100; font-size:medium;"></asp:Label>
+                                </div>
+
+                                <div class="modal-footer btn-group-sm">
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+                </div>
+            </div>
 
             <%--<div class="modal fade" id="defaultmodal4" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">

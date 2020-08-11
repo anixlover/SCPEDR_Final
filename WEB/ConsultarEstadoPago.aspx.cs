@@ -148,33 +148,65 @@ public partial class ConsultarEstadoPago : System.Web.UI.Page
                     Response.Redirect("~/ActualizarImgVoucher.aspx?ID=" + id5);
                     break;
 
-                    //string ac = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
-                    //using (SqlConnection con = new SqlConnection(ac))
-                    //{
-                    //    SqlCommand cmd = new SqlCommand("SP_DVS", con);
-                    //    cmd.CommandType = CommandType.StoredProcedure;
-                    //    SqlParameter paramId = new SqlParameter()
-                    //    {
-                    //        ParameterName = "@idsol",
-                    //        Value = objDtoSolicitud.PK_IS_Cod
-                    //    };
-                    //    cmd.Parameters.Add(paramId);
-                    //    con.Open();
-                    //    byte[] bytes = (byte[])cmd.ExecuteScalar();
-                    //    con.Close();
-                    //    string strbase64 = Convert.ToBase64String(bytes);
-                    //    ImageVo.ImageUrl = "data:Image/png;base64," + strbase64;
-                    //}
+                //string ac = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+                //using (SqlConnection con = new SqlConnection(ac))
+                //{
+                //    SqlCommand cmd = new SqlCommand("SP_DVS", con);
+                //    cmd.CommandType = CommandType.StoredProcedure;
+                //    SqlParameter paramId = new SqlParameter()
+                //    {
+                //        ParameterName = "@idsol",
+                //        Value = objDtoSolicitud.PK_IS_Cod
+                //    };
+                //    cmd.Parameters.Add(paramId);
+                //    con.Open();
+                //    byte[] bytes = (byte[])cmd.ExecuteScalar();
+                //    con.Close();
+                //    string strbase64 = Convert.ToBase64String(bytes);
+                //    ImageVo.ImageUrl = "data:Image/png;base64," + strbase64;
+                //}
 
-                    //Utils.AddScriptClientUpdatePanel(UpdatePanelA, "uploadFileDocuments(" + Request.Params["Id"] + ");");
+                //Utils.AddScriptClientUpdatePanel(UpdatePanelA, "uploadFileDocuments(" + Request.Params["Id"] + ");");
 
 
-                    //txtFechaEmisionA.Text = objDtoSolicitud.DTS_FechaEmicion.ToString();
-                    //txtNroOpeA.Text = objvoucherdao.PK_VV_NumVoucher.ToString();
-                    //txtImporteA.Text = objvoucherdao.DV_ImporteDepositado.ToString();
-                    //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>$('#defaultmodal4').modal('show');</script>", false);
-                    //break;
-
+                //txtFechaEmisionA.Text = objDtoSolicitud.DTS_FechaEmicion.ToString();
+                //txtNroOpeA.Text = objvoucherdao.PK_VV_NumVoucher.ToString();
+                //txtImporteA.Text = objvoucherdao.DV_ImporteDepositado.ToString();
+                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>$('#defaultmodal4').modal('show');</script>", false);
+                //break;
+                case "Ver detalles":
+                    //dtoMolduraxUsuario.FK_VU_Cod = Session["DNIUsuario"].ToString();
+                    int index6 = Convert.ToInt32(e.CommandArgument);
+                    var columna6= gvConsultar.DataKeys[index6].Values;
+                    string id6 = columna6[0].ToString();
+                    objDtoSolicitud.PK_IS_Cod = int.Parse(id6);
+                    objCtrSolicitud.leerSolicitudTipo(objDtoSolicitud);
+                    if (objDtoSolicitud.VS_TipoSolicitud == "Personalizado por catalogo" || objDtoSolicitud.VS_TipoSolicitud == "Catalogo")
+                    {
+                        objCtrSolicitud.LeerSolicitud(objDtoSolicitud);
+                        imgPersonal.Visible = false;
+                        //gvMolduras.Visible = true;
+                        //txtcomentario.Visible = false;
+                        lblcosto.Text = "S/ " + objDtoSolicitud.DS_ImporteTotal.ToString();
+                        gvMolduras.DataSource = objCtrSolicitud.ListaMolduras(objDtoSolicitud);
+                        gvMolduras.DataBind();
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>$('#defaultmodal4').modal('show');</script>", false);
+                    }
+                    if (objDtoSolicitud.VS_TipoSolicitud == "Personalizado por diseño propio")
+                    {
+                        objCtrSolicitud.leerSolicitudDiseñoPersonal(objDtoSolicitud);
+                        gvMolduras.Visible = false;
+                        imgPersonal.Visible = true;
+                        //txtcomentario.Visible = true;
+                        lblcosto.Text = "Costo Aproximado: S/ " + objDtoSolicitud.DS_PrecioAprox.ToString();
+                        lbldias.Text = "Dias Asignados: " + objCtrSolicitud.diasRecojo(objDtoSolicitud) + " días";
+                        lblImporte.Text = "Importe cotizado: S/ " + objCtrSolicitud.ImporteSolicitud(objDtoSolicitud);
+                        string imagen = Convert.ToBase64String(objDtoSolicitud.VBS_Imagen);
+                        imgPersonal.ImageUrl = "data:Image/png;base64," + imagen;
+                        //txtcomentario.Text = objDtoSolicitud.VS_Comentario;
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>$('#defaultmodal4').modal('show');</script>", false);
+                    }
+                    break;
             }
         }
         catch (Exception ex)
@@ -282,7 +314,37 @@ public partial class ConsultarEstadoPago : System.Web.UI.Page
     {
         return estado == "Con retraso";
     }
-    
+    protected Boolean ValidacionEstado6(string estado)
+    {
+        return estado == "Personalizado por diseño propio";
+    }
+    public void CargarMolduras()
+    {
+        if (objCtrSolicitud.leerSolicitudTipo(objDtoSolicitud))
+        {
+            if (objDtoSolicitud.VS_TipoSolicitud == "Personalizado por catalogo" || objDtoSolicitud.VS_TipoSolicitud == "Catalogo")
+            {
+                objCtrSolicitud.LeerSolicitud(objDtoSolicitud);
+                imgPersonal.Visible = false;
+                gvMolduras.Visible = true;
+                //txtcomentario.Visible = false;
+                lblcosto.Text = "S/ " + objDtoSolicitud.DS_ImporteTotal.ToString();
+                gvMolduras.DataSource = objCtrSolicitud.ListaMolduras(objDtoSolicitud);
+                gvMolduras.DataBind();
+            }
+            if (objDtoSolicitud.VS_TipoSolicitud == "Personalizado por diseño propio")
+            {
+                objCtrSolicitud.leerSolicitudDiseñoPersonal(objDtoSolicitud);
+                gvMolduras.Visible = false;
+                imgPersonal.Visible = true;
+                //txtcomentario.Visible = true;
+                lblcosto.Text = "Aproximado: S/" + objDtoSolicitud.DS_PrecioAprox.ToString();
+                string imagen = Convert.ToBase64String(objDtoSolicitud.VBS_Imagen);
+                imgPersonal.ImageUrl = "data:Image/png;base64," + imagen;
+                //txtcomentario.Text = objDtoSolicitud.VS_Comentario;
+            }
+        }
+    }
 
 
 
