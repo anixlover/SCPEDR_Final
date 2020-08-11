@@ -103,12 +103,23 @@ public partial class Detalles_Solicitud : System.Web.UI.Page
     }
     protected void btnfehca_Click(object sender, EventArgs e)
     {
+        if (txtfecha.Text == "") 
+        {
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "swal({type: 'error',title: 'ERROR!',text: 'Fecha invalida!!!'});", true);
+            return;   
+        }
         objDtoSolicitud.PK_IS_Cod = Convert.ToInt32(Session["idSolicitudPago"]);
         objCtrSolicitud.leerSolicitudTipo(objDtoSolicitud);
         DateTime fecha = Convert.ToDateTime(txtfecha.Text);
         if (objDtoSolicitud.VS_TipoSolicitud == "Personalizado por diseño propio")
         {
+            if (objCtrSolicitud.diasRecojo(objDtoSolicitud) == 0) 
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "swal({type: 'error',title: 'ERROR!',text: 'Aun no se determinaron los días para entregar!!!'});", true);
+                return;
+            }
             objCtrSolicitud.ActualizarFechaPersonalizadoDiseñopropio(objDtoSolicitud, objCtrSolicitud.diasRecojo(objDtoSolicitud));
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "swal({title:'Se ha asignado "+ objCtrSolicitud.diasRecojo(objDtoSolicitud) + " días CORRECTAMENTE!',text:'Datos ENVIADOS!',type:'success'}, function(){window.location.href='AdministrarPedidos.aspx'});", true);
         }
         if (objDtoSolicitud.VS_TipoSolicitud == "Personalizado por catalogo" || objDtoSolicitud.VS_TipoSolicitud == "Catalogo")
         {

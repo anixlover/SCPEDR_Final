@@ -179,6 +179,14 @@ namespace CTR
         {
             return objDaoSolicitud.SelectSolicitudImporte(objsol);
         }
+        public void Cotizar(DtoSolicitud objsol)
+        {
+            objDaoSolicitud.Cotizar(objsol);
+        }
+        public void RechazarP(DtoSolicitud objsol)
+        {
+            objDaoSolicitud.RechazarP(objsol);
+        }
     }
 }
 

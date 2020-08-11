@@ -51,7 +51,7 @@
                     </ul>
                 </div>
                 <div class="body">
-                    <asp:Image ID="imgPersonal" runat="server" />
+                    <asp:Image ID="imgPersonal" runat="server" Height="300px" Width="300px"/>
                     <asp:GridView ID="gvMolduras" CssClass="table table-bordered table-hover js-basic-example dataTable" runat="server" AutoGenerateColumns="false">
                         <Columns>
                             <asp:BoundField DataField="PK_IM_Cod" ItemStyle-HorizontalAlign="Center" HeaderText="Coóigo de Moldura" />
