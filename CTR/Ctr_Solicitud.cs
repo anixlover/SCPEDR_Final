@@ -75,6 +75,14 @@ namespace CTR
         {
             return objDaoSolicitud.desplegableSolicitudEstado();
         }
+        public DataSet OpcionesEstado()
+        {
+            return objDaoSolicitud.OpcionesEstado();
+        }
+        public DataTable Listar_estado_tipo(string tipo)
+        {
+            return objDaoSolicitud.SelectEstadoTipo(tipo);
+        }
 
         public DataTable ListaSolicitudes()
         {
@@ -159,13 +167,9 @@ namespace CTR
         {
             return objDaoSolicitud.SelectSolicitudesGestion();
         }
-        public void Cotizar(DtoSolicitud objsol)
+        public void ActualizarEstadoSolicitud(DtoSolicitud objdtosol)
         {
-            objDaoSolicitud.Cotizar(objsol);
-        }
-        public void RechazarP(DtoSolicitud objsol)
-        {
-            objDaoSolicitud.RechazarP(objsol);
+            objDaoSolicitud.ActualizarEstadoSolicitud(objdtosol);
         }
         public  int diasRecojo(DtoSolicitud objsol)
         {

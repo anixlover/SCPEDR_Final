@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cph_header" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph_body" runat="Server">
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" method="POST">
         <div class="block-header">
             <h1>Estado Pedido</h1>
         </div>
@@ -20,7 +20,17 @@
 
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <asp:DropDownList runat="server" ID="ddl_TipoMoldura" CssClass=" bootstrap-select form-control"></asp:DropDownList>
+<%--                                        <asp:DropDownList runat="server" ID="ddl_TipoMoldura" OnSelectedIndexChanged="ddl_TipoMoldura_SelectedIndexChanged" CssClass=" bootstrap-select form-control">
+                                        </asp:DropDownList>--%>
+                                            <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="ddlPedidoMuestra" ClientIDMode="Static">
+                                                <ContentTemplate>
+                                                    <asp:DropDownList ID="ddl_TipoMoldura" OnSelectedIndexChanged="ddl_TipoMoldura_SelectedIndexChanged" CssClass=" bootstrap-select form-control" class="form-control" ClientIDMode="Static" runat="server" required>
+                                                        <asp:ListItem Text="Seleccionar" Selected="True" />
+                                                        <asp:ListItem Value="1" Text="En Proceso" />
+                                                        <asp:ListItem Value="2" Text="Terminada" />
+                                                    </asp:DropDownList>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
                                     </div>
 
                                     <div class="col-sm-2">
@@ -28,30 +38,27 @@
                                             <i class="material-icons">search</i>
                                         </asp:LinkButton>
                                     </div>
-
-                                    <%--<div class="col-sm-1">
-                                        <asp:LinkButton runat="server" CssClass="btn btn-danger btn-circle-lg waves-effect waves-circle waves-float" OnClick="btnRegistrar_Click">
-                                                <i class="material-icons">add</i>
-                                        </asp:LinkButton>
-                                    </div>--%>
                                 </div>
                             </div>
                             <div class="body table-responsive ">
-
-                                <asp:GridView ID="gvCatalogo" CssClass="table table-bordered table-hover js-basic-example dataTable" DataKeyNames="PK_IS_Cod,VS_TipoSolicitud,DTS_FechaRegistro,V_SE_Nombre" runat="server" OnRowDataBound="gvCatalogo_RowDataBound" AutoGenerateColumns="False" EmptyDataText="No existen registros" ShowHeaderWhenEmpty="True" OnRowCommand="gvCatalogo_RowCommand">
-                                    <Columns>
-                                        <asp:BoundField DataField="PK_IS_Cod" HeaderText="Codigo Solicitud" />
-                                        <asp:BoundField DataField="VS_TipoSolicitud" HeaderText="Tipo moldura" />
-                                        <asp:BoundField DataField="DTS_FechaRegistro" HeaderText="Fecha Registro" />
-                                        <asp:BoundField DataField="V_SE_Nombre" HeaderText="Estado Pedido" />
-                                        <asp:ButtonField ButtonType="button" HeaderText="Detalles" CommandName="Ver" Text="Ver">
-                                            <ControlStyle CssClass="btn btn-warning" />
-                                        </asp:ButtonField>
-                                        <asp:ButtonField ButtonType="button" HeaderText="Actualizar" CommandName="Actualizar" Text="Editar">
-                                            <ControlStyle CssClass="btn btn-warning" />
-                                        </asp:ButtonField>
-                                    </Columns>
-                                </asp:GridView>
+                                <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <asp:GridView ID="gvCatalogo" CssClass="table table-bordered table-hover js-basic-example dataTable" DataKeyNames="PK_IS_Cod,VS_TipoSolicitud,DTS_FechaRegistro,V_SE_Nombre" runat="server" AutoGenerateColumns="False" EmptyDataText="No existen registros" ShowHeaderWhenEmpty="True" OnRowCommand="gvCatalogo_RowCommand">
+                                            <Columns>
+                                                <asp:BoundField DataField="PK_IS_Cod" HeaderText="Codigo Solicitud" />
+                                                <asp:BoundField DataField="VS_TipoSolicitud" HeaderText="Tipo moldura" />
+                                                <asp:BoundField DataField="DTS_FechaRegistro" HeaderText="Fecha Registro" />
+                                                <asp:BoundField DataField="V_SE_Nombre" HeaderText="Estado Pedido" />
+                                                <asp:ButtonField ButtonType="button" HeaderText="Detalles" CommandName="Ver" Text="Ver">
+                                                    <ControlStyle CssClass="btn btn-warning" />
+                                                </asp:ButtonField>
+                                                <asp:ButtonField ButtonType="button" HeaderText="Actualizar" CommandName="Actualizar" Text="Editar">
+                                                    <ControlStyle CssClass="btn btn-warning" />
+                                                </asp:ButtonField>
+                                            </Columns>
+                                        </asp:GridView>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                             </div>
                         </div>
                     </ContentTemplate>

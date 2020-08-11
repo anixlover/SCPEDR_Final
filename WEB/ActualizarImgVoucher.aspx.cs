@@ -20,6 +20,7 @@ public partial class ActualizarImgVoucher : System.Web.UI.Page
     DtoMolduraxUsuario dtoMolduraxUsuario = new DtoMolduraxUsuario();
     CtrVoucher objCtrVoucher = new CtrVoucher();
     DtoVoucher objvoucherdao = new DtoVoucher();
+    Log _log = new Log();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -33,8 +34,6 @@ public partial class ActualizarImgVoucher : System.Web.UI.Page
             if (Request.Params["Id"] != null)
             {
                 ImageVA.Visible = true;
-
-
                 obtenerInformacionVoucher(Request.Params["Id"]);
 
             }
@@ -92,5 +91,7 @@ public partial class ActualizarImgVoucher : System.Web.UI.Page
     {
         objDtoSolicitud.PK_IS_Cod = int.Parse(Request.Params["Id"]);
         Utils.AddScriptClientUpdatePanel(upBotonGuardar, "uploadFileActualizarVoucher(" + Request.Params["Id"] + ");");
+
+        _log.CustomWriteOnLog("ActualizarImgenVoucher", "Actualizado");
     }
 }

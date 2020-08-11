@@ -21,7 +21,7 @@ public partial class Realizar_compra : System.Web.UI.Page
     DtoSolicitud objsol;
     DtoVoucher objvou;
     Log _log = new Log();
-    SqlConnection conexion = new SqlConnection("data source=(Local); initial catalog=BD_SCPEDR; integrated security=SSPI;");
+    SqlConnection conexion = new SqlConnection("data source= DESKTOP-IAELG6V\\SQLEXPRESS; initial catalog=BD_SCPEDR; integrated security=SSPI;");
     protected void Page_Load(object sender, EventArgs e)
     {
         

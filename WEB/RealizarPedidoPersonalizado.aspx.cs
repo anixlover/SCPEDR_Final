@@ -82,7 +82,6 @@ public partial class RealizarPedidoPersonalizado : System.Web.UI.Page
             if (txtcodigo.Text == "")
             {
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "swal({icon: 'error',title: 'ERROR!',text: 'Ingrese codigo de moldura!!', type: 'error'});", true);
-                
                 return;
             }
             _log.CustomWriteOnLog("registrar pedido personalizado", "entro a busqueda");
