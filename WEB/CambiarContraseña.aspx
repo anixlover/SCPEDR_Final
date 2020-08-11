@@ -24,7 +24,7 @@
                 <br />
          
                 <div class="form-line">
-                    <asp:TextBox ID="txtpass" class="form-control" runat="server" type="password" ClientIDMode="Static"></asp:TextBox>
+                    <asp:TextBox ID="txtpass" width="100%" class="form-control" runat="server" type="password" ClientIDMode="Static"></asp:TextBox>
                 </div>
             </div>
 
@@ -35,7 +35,7 @@
 
                 <asp:Label ID="lblcdex" runat="server" class="form-label"><b>Ingrese su nueva contrase&ntilde;a</b></asp:Label>
                 <div class="form-line">
-                    <asp:TextBox ID="txtpass1" class="form-control" runat="server" type="password" ClientIDMode="Static"></asp:TextBox>
+                    <asp:TextBox ID="txtpass1" width="100%" class="form-control" runat="server" type="password" ClientIDMode="Static"></asp:TextBox>
                 </div>
                 <br />
 
@@ -52,7 +52,7 @@
 
                 <asp:Label ID="Label1" runat="server" class="form-label"><b>Confirma la nueva contrase&ntilde;a</b></asp:Label>
                 <div class="form-line">
-                    <asp:TextBox ID="txtpass2" class="form-control" runat="server" type="password" ClientIDMode="Static"></asp:TextBox>
+                    <asp:TextBox ID="txtpass2" width="100%" class="form-control" runat="server" type="password" ClientIDMode="Static"></asp:TextBox>
                 </div>
             </div>
             <br />

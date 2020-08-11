@@ -94,8 +94,13 @@ public partial class RealizarVenta_Marcial : System.Web.UI.Page
 
         try
         {
+            for (int y = 0; y < gv2.Rows.Count; y++)
+            {
+            string cantidad = gv2.Rows[y].Cells[2].Text;
             objDtoSolicitud.DS_ImporteTotal = double.Parse(txtimporteigv.Text);
+            objDtoSolicitud.IS_Cantidad = int.Parse(cantidad);
             objCtrSolicitud.RegistrarSolicitud_LD2(objDtoSolicitud);
+            }
             //# de solicitud
             int ValorDevuelto = objDtoSolicitud.PK_IS_Cod;
             _log.CustomWriteOnLog("Realizar venta 1", "ValorDevuelto = " + ValorDevuelto);
