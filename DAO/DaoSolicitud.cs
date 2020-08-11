@@ -185,6 +185,14 @@ namespace DAO
             solest.Fill(DS);
             return DS;
         }
+        public DataSet OpcionesEstado()
+        {
+            SqlDataAdapter solest = new SqlDataAdapter("SP_Desplegable_Solicitud_Estado", conexion);
+            solest.SelectCommand.CommandType = CommandType.StoredProcedure;
+            DataSet DS = new DataSet();
+            solest.Fill(DS);
+            return DS;
+        }
         //este es
         public DataTable ListarSolicitudxEstado(DtoSolicitud objSol, DtoMolduraxUsuario objmxu, DtoSolicitudEstado objSE)
         {
@@ -304,6 +312,19 @@ namespace DAO
             conexion.Close();
             return dtsolicitudes;
         }
+        public DataTable SelectEstadoTipo(string tipo)
+        {
+            DataTable dtsolicitudes = null;
+            conexion.Open();
+            SqlCommand command = new SqlCommand("SP_Select_Estado_Tipo", conexion);
+            SqlDataAdapter daAdaptador = new SqlDataAdapter(command);
+            command.Parameters.AddWithValue("@EstadoSol", tipo);
+            command.CommandType = CommandType.StoredProcedure;
+            dtsolicitudes = new DataTable();
+            daAdaptador.Fill(dtsolicitudes);
+            conexion.Close();
+            return dtsolicitudes;
+        }
 
         public void UpdateSolicitudObservada(DtoSolicitud objsol) 
         {
@@ -338,7 +359,6 @@ namespace DAO
             unComando.ExecuteNonQuery();
             conexion.Close();
         }
-
         public DataTable Listar_Solicitud_Personalizado()
         {
             DataTable dtsolicitudes = null;
@@ -470,37 +490,23 @@ namespace DAO
             conexion.Open();
             SqlCommand command = new SqlCommand("SP_GestionarSolicitudes", conexion);
             SqlDataAdapter daAdaptador = new SqlDataAdapter(command);
+      
             command.CommandType = CommandType.StoredProcedure;
             dtsolicitudes = new DataTable();
             daAdaptador.Fill(dtsolicitudes);
             conexion.Close();
             return dtsolicitudes;
         }
-
-        public void Cotizar(DtoSolicitud objsol)
+        public void ActualizarEstadoSolicitud(DtoSolicitud objdtosol)
         {
-            SqlCommand command = new SqlCommand("SP_Cotizar", conexion);
+            SqlCommand command = new SqlCommand("SP_Actualizar_Estado_Sol", conexion);
             command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@idSol", objsol.PK_IS_Cod);
-            command.Parameters.AddWithValue("@impTotal", objsol.DS_ImporteTotal);
-            command.Parameters.AddWithValue("@nDias", objsol.IS_Ndias);
-            //command.Parameters.AddWithValue("@estadoSol", objsol.FK_ISE_Cod);
+            command.Parameters.AddWithValue("@idsol", objdtosol.PK_IS_Cod);
+            command.Parameters.AddWithValue("@estado", objdtosol.FK_ISE_Cod);
             conexion.Open();
             command.ExecuteNonQuery();
             conexion.Close();
-
         }
-
-        public void RechazarP(DtoSolicitud objsol)
-        {
-            SqlCommand command = new SqlCommand("SP_RechazarP", conexion);
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@idSol", objsol.PK_IS_Cod);
-            conexion.Open();
-            command.ExecuteNonQuery();
-            conexion.Close();
-
-        }
-
+        
     }
 }

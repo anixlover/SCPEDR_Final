@@ -25,8 +25,11 @@ public partial class Gestionar_Estado_Pedido : System.Web.UI.Page
 
         if (!IsPostBack)
         {
+            UpdatePanel3.Update();
+            //OpcionesEstado();
             try
             {
+   
                 UpdatePanel.Update();
                 gvCatalogo.DataSource = objctrSolicitud.ListaSolicitudesGestion();
                 gvCatalogo.DataBind();
@@ -36,14 +39,23 @@ public partial class Gestionar_Estado_Pedido : System.Web.UI.Page
                 _log.CustomWriteOnLog("GestionPedido", "Error = " + ex.Message + "Stac" + ex.StackTrace);
                 throw;
             }
-
         }
-       
     }
 
+    //public void OpcionesEstado()
+    //{
+    //    DataSet ds = new DataSet();
+    //    ds = objctrSolicitud.OpcionesEstado();
+    //    ddl_TipoMoldura.DataSource = ds;
+    //    ddl_TipoMoldura.DataTextField = "V_SE_Nombre";
+    //    ddl_TipoMoldura.DataValueField = "V_SE_Nombre";
+    //    ddl_TipoMoldura.DataBind();
+    //    ddl_TipoMoldura.Items.Insert(0, new ListItem("Todos", "0"));
+    //    _log.CustomWriteOnLog("Actualizar_Proceso", "Termino de llenar el ddl");
+    //}
     protected void btnSearch_Click(object sender, EventArgs e)
     {
-
+        UpdatePanel3.Update();
     }
 
     protected void gvCatalogo_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -128,8 +140,18 @@ public partial class Gestionar_Estado_Pedido : System.Web.UI.Page
         }
     }
 
-    protected void gvCatalogo_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void ddl_TipoMoldura_SelectedIndexChanged(object sender, EventArgs e)
     {
-
+        string tipo = ddl_TipoMoldura.Text;
+        if (tipo == "0")
+        {
+            gvCatalogo.DataSource = objctrSolicitud.ListaSolicitudesGestion();
+            gvCatalogo.DataBind();
+        }
+        else
+        {
+            gvCatalogo.DataSource = objctrSolicitud.Listar_estado_tipo(tipo);
+            gvCatalogo.DataBind();
+        }
     }
 }
