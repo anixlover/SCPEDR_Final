@@ -38,6 +38,7 @@
             </div>
         </div>
         
+
        <%-- <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
                         <asp:Button ID="btnActVou" runat="server" class="btn btn-danger btn-lg" Text="Actualizar" OnClick="btnActVou_Click"></asp:Button>
