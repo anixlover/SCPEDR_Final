@@ -37,6 +37,7 @@ namespace DAO
             cmd.ExecuteNonQuery();
             conexion.Close();
         }
+
         public bool SelectPagoVoucher(DtoVoucher v)
         {
             string Select = "SELECT * from T_Voucher where PK_VV_NumVoucher ='" +  v.PK_VV_NumVoucher+"'";
