@@ -240,7 +240,7 @@
                                                                 <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="ddlPedidoMuestra" ClientIDMode="Static">
                                                                     <ContentTemplate>
                                                                         <asp:Label ID="Label6" runat="server" class="form-label"><b>Por :</b></asp:Label>
-                                                                        <asp:DropDownList runat="server" ID="ddlPedidoPor" ClientIDMode="Static"
+                                                                        <asp:DropDownList runat="server" ID="ddlPedidoPor"   ClientIDMode="Static"
                                                                             CssClass=" bootstrap-select form-control" OnSelectedIndexChanged="ddl_TipoComprobante_SelectedIndexChanged">
                                                                             <asp:ListItem Text="Seleccionar" Selected="True" />
                                                                             <asp:ListItem Value="1" Text="Catalogo" />

@@ -51,12 +51,21 @@
                                         </div>
                                     </div>
                                 </div>
-                                <%--insert ddl--%> 
+                                <%--insert ddl--%>
                                 <div class="col-md-4">
                                     <div class="row clearfix">
                                         <div class="col-sm-12">
                                             <label class="form-label">Estado</label>
-                                            <asp:DropDownList ID="ddlestadosolicitud" class="form-control" runat="server" required></asp:DropDownList>
+                                            <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="ddlPedidoMuestra" ClientIDMode="Static">
+                                                <ContentTemplate>
+                                                    <asp:DropDownList ID="ddlestadosolicitud" class="form-control" ClientIDMode="Static" runat="server" required>
+                                                        <asp:ListItem Text="Seleccionar" Selected="True" />
+                                                        <asp:ListItem Value="1" Text="En proceso" />
+                                                        <asp:ListItem Value="2" Text="Con retraso" />
+                                                        <asp:ListItem Value="3" Text="Terminada" />
+                                                    </asp:DropDownList>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
                                         </div>
                                     </div>
                                 </div>
@@ -149,7 +158,7 @@
                             </div>--%>
                             <div class="row">
                                 <div class="col-sm-3 right">
-                                    <asp:LinkButton ID="btnCancelar" runat="server" CssClass="btn bg-red waves-effect" Style="float: right" Width="100%" 
+                                    <asp:LinkButton ID="btnCancelar" runat="server" CssClass="btn bg-red waves-effect" Style="float: right" Width="100%"
                                         Text="Cancelar" OnClick="btnCancelar_Click">
 												<i class="material-icons">arrow_back</i>Regresar
                                     </asp:LinkButton>
@@ -171,4 +180,45 @@
             </div>
         </form>
     </section>
+
 </asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="cph_footer" runat="Server">
+</asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="cph_Js" runat="Server">
+    <script src="js/Aplicacion/Actulizar_Proceso.js"></script>
+
+    <script>
+        function showSuccessMessage2() {
+            swal({
+                title: "Todo actualizado",
+                text: "Pulsa el botón y se te redirigirá",
+                type: "success"
+            }, function (redirect) {
+                if (redirect) {
+                    window.location.href = "Gestionar_Estado_Pedido.aspx"
+                }
+            });
+        }
+        //function showSuccessMessage3() {
+        //    swal({
+        //        title: "Todo actualizado",
+        //        text: "Pulsa el botón y se te redirigirá",
+        //        type: "success"
+        //    }, function (redirect) {
+        //        if (redirect) {
+        //            window.location.href = "RealizarVenta_Marcial.aspx"
+        //        }
+        //    });
+        //}
+        //function showSuccessMessage4() {
+        //    swal({
+        //        title: "Todo actualizado!",
+        //        text: "Identificar al cliente!!",
+        //        type: "error"
+        //    });
+        //}
+
+    </script>
+
+</asp:Content>
+

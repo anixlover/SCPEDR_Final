@@ -75,6 +75,14 @@ namespace CTR
         {
             return objDaoSolicitud.desplegableSolicitudEstado();
         }
+        public DataSet OpcionesEstado()
+        {
+            return objDaoSolicitud.OpcionesEstado();
+        }
+        public DataTable Listar_estado_tipo(string tipo)
+        {
+            return objDaoSolicitud.SelectEstadoTipo(tipo);
+        }
 
         public DataTable ListaSolicitudes()
         {
@@ -154,6 +162,10 @@ namespace CTR
         public DataTable ListaSolicitudesGestion()
         {
             return objDaoSolicitud.SelectSolicitudesGestion();
+        }
+        public void ActualizarEstadoSolicitud(DtoSolicitud objdtosol)
+        {
+            objDaoSolicitud.ActualizarEstadoSolicitud(objdtosol);
         }
     }
 }
