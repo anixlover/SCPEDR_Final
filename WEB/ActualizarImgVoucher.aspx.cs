@@ -34,8 +34,6 @@ public partial class ActualizarImgVoucher : System.Web.UI.Page
             if (Request.Params["Id"] != null)
             {
                 ImageVA.Visible = true;
-
-
                 obtenerInformacionVoucher(Request.Params["Id"]);
 
             }
@@ -94,6 +92,6 @@ public partial class ActualizarImgVoucher : System.Web.UI.Page
         objDtoSolicitud.PK_IS_Cod = int.Parse(Request.Params["Id"]);
         Utils.AddScriptClientUpdatePanel(upBotonGuardar, "uploadFileActualizarVoucher(" + Request.Params["Id"] + ");");
 
-        _log.CustomWriteOnLog("PropiedadMoldura", "Actualizado");
+        _log.CustomWriteOnLog("ActualizarImgenVoucher", "Actualizado");
     }
 }
