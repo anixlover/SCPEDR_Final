@@ -338,6 +338,7 @@ namespace DAO
             unComando.ExecuteNonQuery();
             conexion.Close();
         }
+
         public DataTable Listar_Solicitud_Personalizado()
         {
             DataTable dtsolicitudes = null;
@@ -474,6 +475,31 @@ namespace DAO
             daAdaptador.Fill(dtsolicitudes);
             conexion.Close();
             return dtsolicitudes;
+        }
+
+        public void Cotizar(DtoSolicitud objsol)
+        {
+            SqlCommand command = new SqlCommand("SP_Cotizar", conexion);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@idSol", objsol.PK_IS_Cod);
+            command.Parameters.AddWithValue("@impTotal", objsol.DS_ImporteTotal);
+            command.Parameters.AddWithValue("@nDias", objsol.IS_Ndias);
+            //command.Parameters.AddWithValue("@estadoSol", objsol.FK_ISE_Cod);
+            conexion.Open();
+            command.ExecuteNonQuery();
+            conexion.Close();
+
+        }
+
+        public void RechazarP(DtoSolicitud objsol)
+        {
+            SqlCommand command = new SqlCommand("SP_RechazarP", conexion);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@idSol", objsol.PK_IS_Cod);
+            conexion.Open();
+            command.ExecuteNonQuery();
+            conexion.Close();
+
         }
 
     }

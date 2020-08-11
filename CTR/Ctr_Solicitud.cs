@@ -155,6 +155,14 @@ namespace CTR
         {
             return objDaoSolicitud.SelectSolicitudesGestion();
         }
+        public void Cotizar(DtoSolicitud objsol)
+        {
+            objDaoSolicitud.Cotizar(objsol);
+        }
+        public void RechazarP(DtoSolicitud objsol)
+        {
+            objDaoSolicitud.RechazarP(objsol);
+        }
     }
 }
 
