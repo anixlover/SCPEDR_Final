@@ -139,6 +139,22 @@ namespace CTR
         {
             objDaoSolicitud.ObtenerSolicitudPersonalizado(objsolicitud, objSolicitudEstado);
         }
+        public void ObtenerSolicitud(DtoSolicitud objsol, DtoMoldura objmol)
+        {
+            objDaoSolicitud.ObtenerSolicitud(objsol, objmol);
+        }
+        public void ModalPXDP(DtoSolicitud objsol)
+        {
+            objDaoSolicitud.ModalPXDP(objsol);
+        }
+        public void ModalAllmDP(DtoSolicitud objsol)
+        {
+            objDaoSolicitud.ModalAllmDP(objsol);
+        }
+        public DataTable ListaSolicitudesGestion()
+        {
+            return objDaoSolicitud.SelectSolicitudesGestion();
+        }
     }
 }
 

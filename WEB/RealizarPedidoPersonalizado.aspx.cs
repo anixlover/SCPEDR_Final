@@ -178,11 +178,11 @@ public partial class RealizarPedidoPersonalizado : System.Web.UI.Page
             if (txtunidadmetrica.Value == "Mt" && cant > 149 || txtunidadmetrica.Value == "Cm" && cant > 29 || txtunidadmetrica.Value == "M2" && cant > 39)
             {
 
-                txt_importe.Text = "S/" + Convert.ToString(importe);
+                txt_importe.Text =  Convert.ToString(importe);
                 double descuento = (importe * 5) / 100;
-                txt_descuento.Text = "S/" + Convert.ToString(descuento);
+                txt_descuento.Text =  Convert.ToString(descuento);
                 double total = importe - descuento;
-                txt_subtotal.Text = "S/" + Convert.ToString(total);
+                txt_subtotal.Text =  Convert.ToString(total);
 
             }
             else
@@ -290,17 +290,16 @@ public partial class RealizarPedidoPersonalizado : System.Web.UI.Page
             objDtoSolicitud.VS_TipoSolicitud = "Personalizado por catalogo";
             _log.CustomWriteOnLog("registrar pedido personalizado", "objDtoSolicitud.VS_TipoSolicitud : " + objDtoSolicitud.VS_TipoSolicitud);
             objDtoSolicitud.IS_Cantidad = int.Parse(txt_cantidad.Text);
-            _log.CustomWriteOnLog("registrar pedido personalizado", "objDtoSolicitud.IS_Cantidad : " + objDtoSolicitud.IS_Cantidad);
-            objDtoSolicitud.DS_ImporteTotal = double.Parse(txt_importe.Text);
-            _log.CustomWriteOnLog("registrar pedido personalizado", "objDtoSolicitud.DS_ImporteTotal : " + objDtoSolicitud.DS_ImporteTotal);
+            _log.CustomWriteOnLog("registrar pedido personalizado", "objDtoSolicitud.VS_TipoSolicitud : " + objDtoSolicitud.VS_TipoSolicitud);
+            objDtoSolicitud.DS_ImporteTotal = Convert.ToDouble(txt_importe.Text);
+            _log.CustomWriteOnLog("registrar pedido personalizado", "objDtoSolicitud.VS_TipoSolicitud : " + objDtoSolicitud.DS_ImporteTotal);
             objDtoSolicitud.VS_Comentario = txtarea.Text;
-            _log.CustomWriteOnLog("registrar pedido personalizado", "objDtoSolicitud.VS_Comentario : " + objDtoSolicitud.VS_Comentario);
+            _log.CustomWriteOnLog("registrar pedido personalizado", "objDtoSolicitud.VS_TipoSolicitud : " + objDtoSolicitud.VS_Comentario);
             objDtoSolicitud.IS_EstadoPago = 1; //estado pendiente
-
+            //registra solicitud
             objCtrSolicitud.RegistrarSolcitud_PC(objDtoSolicitud);
             _log.CustomWriteOnLog("registrar pedido personalizado", "se registro la solicitud");
 
-            //REGISTRAR MOLDURA X USUARIO
             _log.CustomWriteOnLog("registrar pedido personalizado", "Entra a registrar Moldura x Usuario");
 
 
@@ -312,22 +311,22 @@ public partial class RealizarPedidoPersonalizado : System.Web.UI.Page
             _log.CustomWriteOnLog("registrar pedido personalizado", "objDtoMXU.FK_IM_Cod : " + objDtoMXU.DMU_Precio);
             objDtoMXU.FK_VU_Cod = Session["DNIUsuario"].ToString();
             _log.CustomWriteOnLog("registrar pedido personalizado", "objDtoMXU.FK_IM_Cod : " + objDtoMXU.FK_VU_Cod);
+            //REGISTRAR MOLDURA X USUARIO
             objCtrMXU.registrarMXU(objDtoMXU);
+
             _log.CustomWriteOnLog("registrar pedido personalizado", "se registro la Moldura x Usuario satisfactoriamente");
-
-            //ACTUALIZAR MOLDURA X USUARIO
             _log.CustomWriteOnLog("registrar pedido personalizado", "Entra a actualizacion de la Moldura x Usuario");
-
             int idMXU = objDtoMXU.PK_IMU_Cod;
             _log.CustomWriteOnLog("registrar pedido personalizado", "El idMXU es: " + idMXU);
-
             int Nsolicitud = objDtoSolicitud.PK_IS_Cod;
             _log.CustomWriteOnLog("registrar pedido personalizado", " El PK de solicitud guardado en Nsolicitud es: " + Nsolicitud);
-
             objDtoMXU.FK_IS_Cod = Nsolicitud;
             _log.CustomWriteOnLog("registrar pedido personalizado", "El Pk de la solcitud se almacena ahora en objDtoMXU.FK_IS_Cod y es: " + objDtoMXU.FK_IS_Cod);
 
+            //ACTUALIZAR MOLDURA X USUARIO
             objCtrMXU.actualizarMXUSol(objDtoMXU);
+
+            //modal message
             Utils.AddScriptClientUpdatePanel(UpdatePanel1, "showSuccessMessage3()");
             _log.CustomWriteOnLog("registrar pedido personalizado", "se actualizado la Moldura x Usuario satisfactoriamente");
             //Utils.AddScriptClient("showSuccessMessage2()");
