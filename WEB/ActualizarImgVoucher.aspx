@@ -17,7 +17,7 @@
             <div class="custom-file">
                     Imagen del voucher:<br />
                    <%-- &nbsp;--%>
-                    <asp:Image ID="ImageVA" runat="server" class="rounded" />
+                    <asp:Image ID="ImageVA" runat="server" class="rounded" Height="500px" Width="500px"/>
                     <input name="fileAnexo" type ="file" id ="FileUpload1" accept=".png,.jpg" runat="server"  class="btn btn-warning" style="width: 100%;"  />
                    <%--onchange="ImagePreview(this);"--%>
                 <br />
