@@ -18,6 +18,10 @@ public partial class MasterPage : System.Web.UI.MasterPage
             Log.WriteOnLog("-----------------------------Ingresando a masterpage y Obtener pestañas disponibles--------------------------");
             Log.WriteOnLog("-------------------------------------------------------------------------------------------------------------");
                 int perfil = int.Parse(Session["id_perfil"].ToString());
+            switch (perfil)
+            {
+
+            }
         }
         catch (Exception ex)
         {
@@ -27,7 +31,32 @@ public partial class MasterPage : System.Web.UI.MasterPage
         }
 
 	}
+    public void perfilGerente()
+    {
+        string html = string.Format(@"
+            <li class='active'>
+                        <a href = 'GestionCatalogo.aspx' >
+                            <i class='material-icons'>check</i>
+                            <span>Gestionar Catalago</span>
+                        </a>
+                    </li>
+            <li class='active'>
+                        <a href = 'Evaluar_Pedido_Personalizado.aspx' >
+                            <i class='material-icons'>check</i>
+                            <span>Evaluar Pedido Personalizado</span>
+                        </a>
+                    </li>
+        ");
+        this.Literal1.Text = html;
+    }
+    public void perfilVendedor()
+    {
 
+    }
+    public void perfilTrabajador()
+    {
+
+    }
     protected void UsuarioOption_ServerClick(object sender, EventArgs e)
     {
 

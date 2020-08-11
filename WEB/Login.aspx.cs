@@ -105,41 +105,30 @@ public partial class Login : System.Web.UI.Page
                 }
                 else if (Session["id_perfil"].ToString() == "2")
                 {
-                    HttpCookie returnCookie = Request.Cookies["returnUrl"];
-                    if ((returnCookie == null) || string.IsNullOrEmpty(returnCookie.Value))
-                    {
+                   
                         string script = @"<script type='text/javascript'>
                                       location.href='../GestionCatalogo.aspx';
                                   </script>";
                         ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", script, false);
-                    }
-
-                    else
-                    {
-                        HttpCookie deleteCookie = new HttpCookie("returnUrl");
-                        deleteCookie.Expires = DateTime.Now.AddDays(-1);
-                        Response.Cookies.Add(deleteCookie);
-                        Response.Redirect(returnCookie.Value);
-                    }
+                   
                 }
                 else if (Session["id_perfil"].ToString() == "3")
                 {
-                    HttpCookie returnCookie = Request.Cookies["returnUrl"];
-                    if ((returnCookie == null) || string.IsNullOrEmpty(returnCookie.Value))
-                    {
+                   
                         string script = @"<script type='text/javascript'>
                                       location.href='../RealizarVenta_Marcial.aspx';
                                   </script>";
                         ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", script, false);
-                    }
+                   
+                }
+                else if (Session["id_perfil"].ToString() == "4")
+                {
 
-                    else
-                    {
-                        HttpCookie deleteCookie = new HttpCookie("returnUrl");
-                        deleteCookie.Expires = DateTime.Now.AddDays(-1);
-                        Response.Cookies.Add(deleteCookie);
-                        Response.Redirect(returnCookie.Value);
-                    }
+                    string script = @"<script type='text/javascript'>
+                                      location.href='../Gestionar_Estado_Pedido.aspx';
+                                  </script>";
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", script, false);
+
                 }
 
             }

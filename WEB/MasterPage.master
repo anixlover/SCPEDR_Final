@@ -27,11 +27,10 @@
 
     <script src="plugins/jquery/jquery.min.js"></script>
     <title>SCPEDR</title>
-    
+
     <asp:ContentPlaceHolder ID="cph_header" runat="server">
     </asp:ContentPlaceHolder>
     <%--select item--%>
-    
 </head>
 <body class="theme-red">
     <!-- NAVBAR CAMBIAR COLOR -->
@@ -148,6 +147,7 @@
 								<span>Typography</span>
 							</a>
 						</li>--%>
+                    <asp:Literal ID="Literal1" runat="server"></asp:Literal>
                     <li class="active">
                         <a href="RealizarVenta_Marcial.aspx">
                             <i class="material-icons">check</i>
@@ -178,7 +178,7 @@
                             <span>Administrar Pedidos</span>
                         </a>
                     </li>
-                    
+
                     <li class="active">
                         <a href="Evaluar_Pedido_Personalizado.aspx">
                             <i class="material-icons">check</i>
