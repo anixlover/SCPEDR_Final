@@ -275,7 +275,7 @@ namespace DAO
         {
             try
             {
-                SqlConnection con = new SqlConnection("data source=(Local); initial catalog=BD_SCPEDR; integrated security=SSPI;");
+                SqlConnection con = new SqlConnection("data source=ALE\SQLEXPRESS; initial catalog=BD_SCPEDR; integrated security=SSPI;");
                 int valor_retornado = 0;
                 SqlCommand cmd = new SqlCommand("SELECT IM_Stock FROM T_Moldura WHERE PK_IM_Cod=" + objMoldura.PK_IM_Cod, con);
 
@@ -310,7 +310,7 @@ namespace DAO
         }
         public double Aprox(DtoMoldura objMoldura)
         {
-            //SqlConnection con = new SqlConnection(@"data source=DESKTOP-4LVLNRM; initial catalog=BD_SCPEDR; integrated security=SSPI;");
+            //SqlConnection con = new SqlConnection(@"data source=ALE\SQLEXPRESS; initial catalog=BD_SCPEDR; integrated security=SSPI;");
             //double aprox = 0;
             SqlCommand cmd = new SqlCommand("select sum(DM_Precio)/ COUNT(*) as promedio from T_Moldura where FK_ITM_Moldura = " + objMoldura.FK_ITM_Tipo, conexion);
             Console.WriteLine(cmd);

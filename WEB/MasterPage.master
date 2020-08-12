@@ -134,7 +134,7 @@
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
-                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="header">MENU</li>
                     <%--<li class="active">
                         <a href="index.html">
                             <i class="material-icons">home</i>
@@ -148,7 +148,7 @@
 							</a>
 						</li>--%>
                     <asp:Literal ID="Literal1" runat="server"></asp:Literal>
-                    <li class="active">
+                    <%--<li class="active">
                         <a href="RealizarVenta_Marcial.aspx">
                             <i class="material-icons">check</i>
                             <span>Realizar Venta</span>
@@ -184,7 +184,7 @@
                             <i class="material-icons">check</i>
                             <span>Evaluar Pedido Personalizado</span>
                         </a>
-                    </li>
+                    </li>--%>
                 </ul>
             </div>
             <!-- #Menu -->

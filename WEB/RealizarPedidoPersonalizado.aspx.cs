@@ -27,7 +27,7 @@ public partial class RealizarPedidoPersonalizado : System.Web.UI.Page
 
     Log _log = new Log();
 
-    SqlConnection conexion = new SqlConnection("data source=(Local); initial catalog=BD_SCPEDR; integrated security=SSPI;");
+    SqlConnection conexion = new SqlConnection(@"data source=ALE\SQLEXPRESS; initial catalog=BD_SCPEDR; integrated security=SSPI;");
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
